@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/AuthProvider'
-import { motion } from 'framer-motion'
+import { easeInOut, motion } from 'framer-motion'
 
 const Login = () => {
     const { login } = useAuth()
@@ -39,16 +39,16 @@ const Login = () => {
         <div
             className="min-h-screen flex items-center justify-center px-4 bg-cover bg-center"
             style={{
-                backgroundImage: "url('images/sewage-bg.png')",
+                backgroundImage: "url('images/login-bg.jpg')",
             }}
         >
             {/* Dark overlay */}
             <div className="absolute inset-0 bg-black/50"></div>
 
             <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
+                initial={{ opacity: 0, scale:0.9 }}
+                animate={{ opacity: 1, scale:1 }}
+                transition={{ duration: 0.6,ease:"easeOut" }}
                 className="relative w-full max-w-md bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-lg p-8 z-10"
             >
                 {/* Icon */}

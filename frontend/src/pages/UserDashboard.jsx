@@ -12,18 +12,18 @@ const UserDashboard = () => {
 
 
             {/* Main Content */}
-            <main className="flex-1 mt-18 w-full p-6 overflow-y-auto ">
+            <main  className="flex-1 mt-18 w-full p-6 overflow-y-auto ">
                 {/* Top Header */}
                 <motion.div 
                 initial={{opacity:0}}
                 animate={{opacity:1}}
                 transition={{ delay: 0.2, duration: 0.5 }}
-                className="flex not-sm:flex-col mb-6 justify-between not-sm:gap-3 border-1 border-gray-200 px-6 py-6 bg-white rounded-xl items-center ">
+                 className="flex not-sm:flex-col mb-6 justify-between not-sm:gap-3 bg-gradient-to-r from-sky-500/20 via-white to-sky-500/10 border border-gray-200 px-6 py-6 rounded-xl items-center shadow-md">
                     <div className='space-y-0.5 flex flex-col not-sm:items-center gap-1'>
                         <h1 className="text-2xl font-semibold">Welcome back, dhiraj!</h1>
                         <p className="text-gray-600 flex not-sm:text-center">Here's an overview of your sewage complaint submissions.</p>
                     </div>
-                    <button onClick={()=>navigate("/addComplaint")} className="flex gap-4 bg-sky-500 text-white px-[18px] py-[11px] rounded-lg cursor-pointer hover:bg-sky-700 text-sm font-medium">
+                    <button onClick={()=>navigate("/addComplaint")} className="flex gap-3 bg-gradient-to-r from-sky-500 to-sky-700 text-white px-5 py-3 rounded-lg cursor-pointer hover:shadow-lg hover:scale-[1.02] transition-all duration-200 text-sm font-medium">
                         <span><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                             <g id="Edit / Add_Plus">
                                 <path id="Vector" d="M6 12H12M12 12H18M12 12V18M12 12V6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -39,7 +39,7 @@ const UserDashboard = () => {
                 animate={{opacity:1}}
                 transition={{ delay: 0.30, duration: 0.5 }}
                 className="grid grid-cols-1 cursor-pointer md:grid-cols-2 gap-4 mb-6">
-                    <div onClick={()=>navigate("/addComplaint")} className="bg-white border-[1.5px] py-6 border-gray-200 rounded-xl px-6 flex  items-start gap-4 hover:shadow-sm">
+                    <div onClick={()=>navigate("/addComplaint")} className="bg-white bg-gradient-to-r from-sky-500/20  border-[1.5px] py-6 border-gray-200 rounded-xl px-6 flex  items-start gap-4 hover:shadow-sm">
                         <div className="text-2xl mt-3"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
                             <g id="Edit / Add_Plus">
                                 <path id="Vector" d="M6 12H12M12 12H18M12 12V18M12 12V6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -50,7 +50,7 @@ const UserDashboard = () => {
                             <p className="text-sm text-gray-600">Report a new sewage issue</p>
                         </div>
                     </div>
-                    <div onClick={()=>navigate("/myComplaint")} className="bg-white border-[1.5px] border-gray-200 rounded-lg py-6 px-6 flex items-start gap-4 hover:shadow-sm">
+                    <div onClick={()=>navigate("/myComplaint")} className="bg-white bg-gradient-to-r  to-sky-500/20 border-[1.5px] border-gray-200 rounded-lg py-6 px-6 flex items-start gap-4 hover:shadow-sm">
                         <div className="text-2xl mt-3 bg-blue-100 p-2 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" width="19px" height="19px" viewBox="-0.5 0 25 25" fill="none">
                             <path d="M2 12.32H22" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M2 18.32H22" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -68,7 +68,7 @@ const UserDashboard = () => {
                 initial={{opacity:0}}
                 animate={{opacity:1}}
                 transition={{ delay: 0.4, duration: 0.5 }}
-                className="bg-white border-[1.5px] border-gray-200 rounded-xl p-6 mb-6">
+                className="bg-white border-[1.5px] bg-gradient-to-r from-sky-500/20 via-white to-sky-500/20 border-gray-200 rounded-xl p-6 mb-6">
                     <h3 className="text-xl font-semibold mb-4">Your Complaint Summary</h3>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
                         <div className='flex flex-col items-center gap-3'>
@@ -80,7 +80,7 @@ const UserDashboard = () => {
                             <p className="font-bold">0</p>
                             <p className="text-sm text-gray-600">Total Submitted</p>
                         </div>
-                        <div className='flex flex-col items-center gap-3'>
+                        <div className='flex flex-col  items-center gap-3'>
                             <div className="bg-gray-100 rounded-full p-[11px]">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                                     <path d="M12 7V12L14.5 13.5M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -128,7 +128,7 @@ const UserDashboard = () => {
                     </div>
                 </motion.div>
 
-                <div className="bg-white border-[1.5px] border-gray-200 rounded-xl h-[300px] p-6 mb-6 ">
+                <div className="bg-white bg-gradient-to-r from-sky-500/20 via-white to-sky-500/20 border-[1.5px] border-gray-200 rounded-xl h-[300px] p-6 mb-6 ">
                     <h3 className="text-2xl font-semibold mb-2">
                         <span></span>
                         <span>Recent Activity</span>
@@ -151,24 +151,7 @@ const UserDashboard = () => {
                     </div>
                 </div>
 
-                {/* Status Legend */}
-                <div className="bg-white border rounded-xl p-6">
-                    <h3 className="text-xl font-semibold mb-4">Understanding Complaint Status</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div>
-                            <span className="text-sm font-medium bg-red-100 text-red-600 px-2 py-1 rounded">Pending</span>
-                            <p className="text-sm text-gray-600 mt-1">Your complaint has been received</p>
-                        </div>
-                        <div>
-                            <span className="text-sm font-medium bg-yellow-100 text-yellow-600 px-2 py-1 rounded">In Progress</span>
-                            <p className="text-sm text-gray-600 mt-1">Our team is actively working on it</p>
-                        </div>
-                        <div>
-                            <span className="text-sm font-medium bg-green-100 text-green-600 px-2 py-1 rounded">Resolved</span>
-                            <p className="text-sm text-gray-600 mt-1">Your complaint has been resolved</p>
-                        </div>
-                    </div>
-                </div>
+                
             </main>
         </div>
 
