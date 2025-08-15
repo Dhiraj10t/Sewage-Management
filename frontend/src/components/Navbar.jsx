@@ -10,7 +10,7 @@ const Navbar = () => {
     logout()
   }
   return (
-    <nav className={`${token?"":"hidden"} border-b-[1.5px] fixed top-0 z-10 bg-white border-gray-200 w-full h-18  flex justify-between items-center not-sm:px-2 px-4`}>
+    <nav className={`${token?"":"hidden"} border-b-[1.5px] fixed top-0 z-20 bg-white border-gray-200 w-full h-18  flex justify-between items-center not-sm:px-2 px-4`}>
       <div className=" sm:text-2xl p-1 gap-2 text-xl font-bold flex items-center sm:gap-2">
       <span className='invisible'>
         <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="-0.5 0 25 25" fill="none"><path d="M2 12.32H22" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2 18.32H22" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2 6.32001H22" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>

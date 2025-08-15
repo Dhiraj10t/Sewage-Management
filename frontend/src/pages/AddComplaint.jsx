@@ -100,9 +100,9 @@ const AddComplaint = () => {
   }
 
   return (
-    <div className='flex'>
+    <div className='flex h-screen bg-gray-50'>
       <Sidebar />
-      <div className='min-h-screen w-[75%] not-sm:w-[100%] mt-18 bg-gray-50 p-8'>
+      <div className=' w-[80%] not-sm:w-[100%] mt-18 overflow-y-auto p-8'>
 
         <motion.h1
           initial={{ opacity: 0, y: -20 }}

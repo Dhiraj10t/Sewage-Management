@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div className="w-[20%] h-screen bg-gray-900 text-white flex flex-col py-6 px-3">
+    <div className="w-[20%] h-screen sticky bg-gray-900 text-white flex flex-col py-6 px-3">
       {/* Sidebar Header */}
       <h1 className="text-2xl font-bold mb-8 px-2">My App</h1>
 

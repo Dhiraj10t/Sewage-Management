@@ -30,9 +30,9 @@ const MyComplaints = () => {
   }, [])
 
   return (
-    <div className="flex">
+    <div className="flex h-screen">
       <Sidebar />
-      <div className="w-[75%] not-sm:w-full mt-18 p-6 bg-white min-h-screen">
+      <div className="w-[80%] not-sm:w-full mt-18 p-6 bg-white overflow-y-scroll">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}

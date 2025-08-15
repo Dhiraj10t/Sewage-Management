@@ -9,6 +9,8 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import ProtectedRoute from './components/ProtectedRoute'
 import { useAuth } from './hooks/AuthProvider'
+import AdminDashboard from './pages/Admin'
+import CreateTender from './pages/CreateTender'
 
 function App() {
   const { token } = useAuth()
@@ -29,6 +31,9 @@ function App() {
           <Route path='/user' element={<UserDashboard />} />
           <Route path='/addComplaint' element={<AddComplaint />} />
           <Route path='/myComplaint' element={<MyComplaints />} />
+          <Route path='/admin' element={<AdminDashboard/>} />
+          <Route path='/createtender' element={<CreateTender/>} />
+
         </Route>
       </Routes>
     </>
