@@ -30,7 +30,7 @@ const MyComplaints = () => {
   }, [])
 
   return (
-    <div className="flex h-screen">
+    <div className="flex max-h-screen">
       <Sidebar />
       <div className="w-[80%] not-sm:w-full mt-18 p-6 bg-white overflow-y-scroll">
         <motion.h1
@@ -78,7 +78,7 @@ const MyComplaints = () => {
                   visible: { opacity: 1, y: 0 }
                 }}
                 transition={{ duration: 0.4 }}
-                className="bg-white rounded-xl shadow-md p-5 hover:scale-[1.02] hover:shadow-xl transition-all duration-300 border border-gray-200"
+                className="bg-white rounded-xl bg-gradient-to-r from-sky-500/20 via-white to-sky-500/20 shadow-md p-5 hover:scale-[1.02] hover:shadow-xl transition-all duration-300 border border-gray-200"
               >
                 {/* Header */}
                 <div className="flex justify-between items-center mb-3">
@@ -167,7 +167,7 @@ const MyComplaints = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => navigate("/addcomplaint")}
-          className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-full shadow-lg transition duration-300"
+          className="fixed bottom-6 right-6 bg-gradient-to-r from-sky-400 to-sky-700 hover:shadow-lg hover:scale-[1.02]  text-white px-5 py-3 rounded-full shadow-lg transition duration-200"
         >
           ➕ Add Complaint
         </motion.button>

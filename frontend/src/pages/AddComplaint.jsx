@@ -100,7 +100,7 @@ const AddComplaint = () => {
   }
 
   return (
-    <div className='flex h-screen bg-gray-50'>
+    <div className='flex max-h-screen bg-gray-50'>
       <Sidebar />
       <div className=' w-[80%] not-sm:w-[100%] mt-18 overflow-y-auto p-8'>
 
@@ -128,7 +128,7 @@ const AddComplaint = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{once:true,amount:0.1}}
           transition={{ duration: 0.4 }}
-          className='bg-white rounded-xl shadow p-6 space-y-6'
+          className='bg-white bg-gradient-to-r from-sky-500/20 via-white to-sky-500/20 rounded-xl shadow p-6 space-y-6'
         >
           {/* Location */}
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{once:true,amount:0.2}} transition={{ delay: 0.3 }}>
@@ -237,7 +237,7 @@ const AddComplaint = () => {
             <button
               onClick={handleSubmit}
               disabled={submitting}
-              className='px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition'
+              className='px-4 py-2 rounded-md hover:shadow-lg hover:scale-[1.02] transition-all duration-200 bg-gradient-to-r from-sky-500 to-sky-700 text-white hover:bg-blue-700 transition'
             >
               {submitting ? 'Submitting...' : 'Submit Complaint'}
             </button>

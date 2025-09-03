@@ -6,7 +6,7 @@ import {motion} from 'framer-motion'
 const UserDashboard = () => {
     const navigate=useNavigate()
     return (
-        <div className="flex h-screen bg-gray-50">
+        <div className="flex max-h-screen bg-gray-50">
             {/* Sidebar */}
             <Sidebar/>
 
@@ -18,7 +18,7 @@ const UserDashboard = () => {
                 initial={{opacity:0}}
                 animate={{opacity:1}}
                 transition={{ delay: 0.2, duration: 0.5 }}
-                 className="flex not-sm:flex-col mb-6 justify-between not-sm:gap-3 bg-gradient-to-r from-sky-500/20 via-white to-sky-500/10 border border-gray-200 px-6 py-6 rounded-xl items-center shadow-md">
+                 className="flex not-sm:flex-col mb-6 justify-between not-sm:gap-3 bg-gradient-to-r from-sky-500/20 via-white to-sky-500/20 border border-gray-200 px-6 py-6 rounded-xl items-center shadow-md">
                     <div className='space-y-0.5 flex flex-col not-sm:items-center gap-1'>
                         <h1 className="text-2xl font-semibold">Welcome back, dhiraj!</h1>
                         <p className="text-gray-600 flex not-sm:text-center">Here's an overview of your sewage complaint submissions.</p>
@@ -140,7 +140,7 @@ const UserDashboard = () => {
                             <path d="M2 6.32001H22" stroke="#9E9E9E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                         </svg></span>
                         <p className="text-gray-500">No complaints submitted yet</p>
-                        <button  onClick={()=>navigate("/addComplaint")} className="flex gap-4 w-[25%%] bg-sky-500 text-white px-[18px] py-[11px] rounded-lg cursor-pointer hover:bg-sky-700 text-sm font-medium">
+                        <button  onClick={()=>navigate("/addComplaint")} className="flex gap-4 w-[25%%] bg-gradient-to-r from-sky-500 to-sky-700 text-white px-[18px] py-[11px] rounded-lg cursor-pointer hover:shadow-lg hover:scale-[1.02] transition-all duration-200 text-sm font-medium">
                             <span><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                                 <g id="Edit / Add_Plus">
                                     <path id="Vector" d="M6 12H12M12 12H18M12 12V18M12 12V6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />

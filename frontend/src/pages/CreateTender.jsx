@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import AdminLayout from "../components/AdminSidebar";
+ 
 
 const TenderManagement = () => {
   const [tenders, setTenders] = useState([]);
@@ -31,7 +33,11 @@ const TenderManagement = () => {
   };
 
   return (
-    <div className="min-h-screen mt-17 p-6">
+    <div className="flex mt-18">
+
+    <AdminLayout/>
+    <div className="h-screen w-[80%]">
+    <div className="min-h-screen p-6">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">  
         <h1 className="text-2xl font-bold text-gray-800">Tender Management</h1>
@@ -145,6 +151,8 @@ const TenderManagement = () => {
           </div>
         </div>
       )}
+    </div>
+    </div>
     </div>
   );
 };
