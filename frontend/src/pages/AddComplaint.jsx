@@ -237,7 +237,7 @@ const AddComplaint = () => {
             <button
               onClick={handleSubmit}
               disabled={submitting}
-              className='px-4 py-2 rounded-md hover:shadow-lg hover:scale-[1.02] transition-all duration-200 bg-gradient-to-r from-sky-500 to-sky-700 text-white hover:bg-blue-700 transition'
+              className='px-4 py-2 rounded-md hover:shadow-lg hover:scale-[1.02] transition-all duration-200 bg-gradient-to-r from-sky-500 to-sky-700 text-white hover:bg-blue-700 '
             >
               {submitting ? 'Submitting...' : 'Submit Complaint'}
             </button>
