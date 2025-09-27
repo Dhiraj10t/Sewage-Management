@@ -16,7 +16,8 @@ const postcontroller=async(req,res)=>{
                 message:"provide all credentials(Photo,Problem,Date)"
             })
         }
-        const issue=await issuemodel({longitude:location.lng,latitude:location.lat,photo,adress,type,date,description,status:"pending",solvedPhoto:"",usrId:""}).save()
+        console.log(req.user)
+        const issue=await issuemodel({longitude:location.lng,latitude:location.lat,photo,adress,type,date,description,status:"pending",solvedPhoto:"",userId:req.user._id}).save()
         res.send({
             success:true,
             message:"Issue registered successully",

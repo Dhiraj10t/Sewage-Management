@@ -1,13 +1,15 @@
 import React, { useState,useEffect } from "react";
 import AdminLayout from "../components/AdminSidebar";
 import { motion } from "framer-motion";
-import { data } from "react-router-dom";
 
 
 
 const AdminDashboard = () => {
   const [filter, setFilter] = useState("All");
-  const [complaints, setComplaints] = useState({})
+  const [complaints, setComplaints] = useState([])
+
+  
+  
   const filteredComplaints =
     filter === "All" ? complaints : complaints.filter((c) => c.status === filter);
 
