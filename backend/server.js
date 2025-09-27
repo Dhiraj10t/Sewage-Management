@@ -4,11 +4,13 @@ import cors from "cors"
 import mongoDB from "./config/db.js"
 import authRoute from "./routes/authRoutes.js"
 import issueRoute from "./routes/issueRoutes.js"
+import clodinaryConnect from "./config/cloudinary.js"
 
 const app = express()
 const port = 3000
 
 Dotenv.config()
+clodinaryConnect();
 mongoDB()
 app.use(cors())
 app.use(express.json())

@@ -28,6 +28,7 @@ const Register = () => {
         });
         const result = await res.json();
         if (result.success) {
+            alert("Registered Successfully");
             navigate("/login");
         }
     };

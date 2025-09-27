@@ -4,20 +4,20 @@ import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 
 const MyComplaints = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const [complaints, setComplaints] = useState([])
   const [loading, setLoading] = useState(true)
 
   const statusColor = {
-    pending: "bg-yellow-100 text-yellow-700 border-yellow-300",
-    working: "bg-blue-100 text-blue-700 border-blue-300",
-    solved: "bg-green-100 text-green-700 border-green-300"
+    pending: "bg-yellow-100 text-yellow-800 border-yellow-300",
+    working: "bg-blue-100 text-blue-800 border-blue-300",
+    solved: "bg-green-100 text-green-800 border-green-300"
   }
 
   useEffect(() => {
     const fetchComplaints = async () => {
       try {
-        const res = await fetch("http://localhost:3000/issue/get")
+        const res = await fetch("http://localhost:3000/issue/getsingle",{headers: {"authorization": `Bearer ${localStorage.getItem('token')}`}})
         const result = await res.json()
         setComplaints(result.issues)
       } catch (error) {
@@ -30,14 +30,14 @@ const MyComplaints = () => {
   }, [])
 
   return (
-    <div className="flex max-h-screen">
+    <div className="flex max-h-screen bg-gradient-to-br from-gray-100 via-white to-blue-50 min-h-screen">
       <Sidebar />
-      <div className="w-[80%] not-sm:w-full mt-18 p-6 bg-white overflow-y-scroll">
+      <div className="w-[80%] not-sm:w-full mt-18 p-6 bg-white/90 overflow-y-scroll rounded-2xl shadow-lg">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="text-3xl font-extrabold text-gray-900 mb-2"
+          className="text-3xl font-extrabold text-blue-900 mb-2"
         >
           My Complaints
         </motion.h1>
@@ -56,7 +56,7 @@ const MyComplaints = () => {
               <div key={i} className="h-40 bg-gray-100 rounded-xl"></div>
             ))}
           </div>
-        ) : complaints.length > 0 ? (
+        ) : complaints?.length > 0 ? (
           <motion.div
             initial="hidden"
             animate="visible"
@@ -78,12 +78,12 @@ const MyComplaints = () => {
                   visible: { opacity: 1, y: 0 }
                 }}
                 transition={{ duration: 0.4 }}
-                className="bg-white rounded-xl bg-gradient-to-r from-sky-500/20 via-white to-sky-500/20 shadow-md p-5 hover:scale-[1.02] hover:shadow-xl transition-all duration-300 border border-gray-200"
+                className="bg-white rounded-xl bg-gradient-to-r from-blue-100/30 via-white to-blue-50/30 shadow-md p-5 hover:scale-[1.02] hover:shadow-xl transition-all duration-300 border border-blue-100"
               >
                 {/* Header */}
                 <div className="flex justify-between items-center mb-3">
-                  <span className="text-sm text-gray-600">
-                    Submitted on: {new Date(c.createdAt).toLocaleDateString()}
+                  <span className="text-sm text-gray-500">
+                    Submitted on: <span className="font-medium text-blue-900">{new Date(c.createdAt).toLocaleDateString()}</span>
                   </span>
                   <span className={`text-xs font-bold px-3 py-1 rounded-full border ${statusColor[c.status]}`}>
                     {c.status.toUpperCase()}
@@ -91,7 +91,7 @@ const MyComplaints = () => {
                 </div>
 
                 {/* Type + Description */}
-                <h2 className="text-xl font-bold text-gray-800">{c.type}</h2>
+                <h2 className="text-xl font-bold text-blue-900">{c.type}</h2>
                 <p className="text-gray-700 mt-1">{c.description}</p>
 
                 {/* Landmark */}
@@ -109,7 +109,7 @@ const MyComplaints = () => {
                       href={`https://www.google.com/maps?q=${c.latitude},${c.longitude}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-blue-600 hover:underline"
+                      className="text-sm text-blue-700 hover:underline"
                     >
                       🌐 View on Google Maps
                     </a>
@@ -121,9 +121,9 @@ const MyComplaints = () => {
                   <div>
                     <p className="text-xs text-gray-500 mb-1">Before</p>
                     <img
-                      src={c.photoBefore}
+                      src={c.photo}
                       alt="Before"
-                      className="rounded-lg w-full h-32 object-cover border"
+                      className="rounded-lg w-full h-32 object-cover border border-blue-100"
                     />
                   </div>
 
@@ -133,7 +133,7 @@ const MyComplaints = () => {
                       <img
                         src={c.photoAfter}
                         alt="After"
-                        className="rounded-lg w-full h-32 object-cover border"
+                        className="rounded-lg w-full h-32 object-cover border border-green-100"
                       />
                     ) : (
                       <div className="w-full h-32 border rounded-lg flex items-center justify-center bg-gray-50 text-gray-400 text-sm">
@@ -154,8 +154,8 @@ const MyComplaints = () => {
           >
             <p className="text-gray-600 mb-4">You haven't submitted any complaints yet.</p>
             <button
-              className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
-              onClick={() => window.location.href = '/add-complaint'}
+              className="bg-gradient-to-r from-blue-600 to-blue-400 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition font-semibold"
+              onClick={() => window.location.href = '/addcomplaint'}
             >
               Submit Your First Complaint
             </button>
@@ -167,7 +167,7 @@ const MyComplaints = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => navigate("/addcomplaint")}
-          className="fixed bottom-6 right-6 bg-gradient-to-r from-sky-400 to-sky-700 hover:shadow-lg hover:scale-[1.02]  text-white px-5 py-3 rounded-full shadow-lg transition duration-200"
+          className="fixed bottom-6 right-6 bg-gradient-to-r from-blue-600 to-blue-400 hover:shadow-lg hover:scale-[1.02] text-white px-5 py-3 rounded-full shadow-lg transition duration-200 font-semibold"
         >
           ➕ Add Complaint
         </motion.button>

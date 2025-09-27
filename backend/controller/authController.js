@@ -13,6 +13,7 @@ const registerController = async (req, res) => {
         const existingUser = await userModel.findOne({ phoneNo })
         if (existingUser) {
             return res.status(200).send({
+                success: false,
                 message: "Already registered please login"
             })
         }
@@ -61,6 +62,7 @@ const loginController = async (req, res) => {
             })
         }
         const token=jwt.sign({_id:user._id,email:user.email},process.env.JWT_SECRET_KEY,{expiresIn:'6h'});
+
         res.send({
             success:true,
             message:"Login successfull",

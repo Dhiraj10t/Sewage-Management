@@ -11,9 +11,12 @@ import ProtectedRoute from './components/ProtectedRoute'
 import { useAuth } from './hooks/AuthProvider'
 import AdminDashboard from './pages/Admin'
 import CreateTender from './pages/CreateTender'
+import Dashboard from './pages/Admin/Dashboard'
+import ComplaintsManagement from './pages/Admin/Complaints'
 
 function App() {
   const { token } = useAuth()
+  const admin=localStorage.getItem("adminToken")
   return (
     <>
       <Navbar />
@@ -31,9 +34,10 @@ function App() {
           <Route path='/user' element={<UserDashboard />} />
           <Route path='/addComplaint' element={<AddComplaint />} />
           <Route path='/myComplaint' element={<MyComplaints />} />
-          <Route path='/admin' element={<AdminDashboard/>} />
-          <Route path='/createtender' element={<CreateTender/>} />
-
+        </Route>
+        <Route element={<ProtectedRoute />}>
+          <Route path='/admin' element={admin ? <Dashboard/> : <Navigate to="/login" replace />}/>
+          <Route path='/complaints' element={<ComplaintsManagement/>}/>
         </Route>
       </Routes>
     </>

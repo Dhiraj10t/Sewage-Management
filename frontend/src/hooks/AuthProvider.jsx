@@ -2,8 +2,9 @@ import React from 'react'
 import { useEffect, useState, createContext, useContext } from 'react'
 const authcontext = createContext()
 
-export const AuthProvider = ({children}) => {
+export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(null)
+    const [user, setUser] = useState({})
 
     const getToken = () => {
         const stored = localStorage.getItem('token')
@@ -21,16 +22,29 @@ export const AuthProvider = ({children}) => {
         getToken()
     }
 
-    const logout=()=>{
+    const logout = () => {
         localStorage.removeItem("token")
         setToken(null)
     }
 
+    useEffect(() => {
+        const fetchComplaints = async () => {
+            try {
+                const res = await fetch("http://localhost:3000/issue/getuser", { headers: { "authorization": `Bearer ${localStorage.getItem('token')}` } })
+                const result = await res.json()
+                console.log(result)
+                setUser(result.user[0] || [])
+            } catch (error) {
+                console.error("Error fetching user:", error)
+            }
+        }
+        fetchComplaints()
+    }, [])  
     return (
-        <authcontext.Provider value={{token,login,logout}}>
+        <authcontext.Provider value={{ token, login, logout, user }}>
             {children}
         </authcontext.Provider>
     )
 }
 
-export const useAuth=()=>useContext(authcontext)
+export const useAuth = () => useContext(authcontext)
