@@ -5,6 +5,7 @@ import mongoDB from "./config/db.js"
 import authRoute from "./routes/authRoutes.js"
 import issueRoute from "./routes/issueRoutes.js"
 import clodinaryConnect from "./config/cloudinary.js"
+import rateRoute from "./routes/rateRoute.js"
 
 const app = express()
 const port = 3000
@@ -17,6 +18,7 @@ app.use(express.json())
 
 app.use("/auth",authRoute)
 app.use("/issue",issueRoute)
+app.use("/rate",rateRoute)
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
