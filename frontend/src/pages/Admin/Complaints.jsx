@@ -53,6 +53,7 @@ export default function ComplaintsManagement() {
         fetchComplaints();
         setOpenModalId(null);
     }
+    
 
     // Filter and sort complaints
     const filteredComplaints = complaints
@@ -83,7 +84,7 @@ export default function ComplaintsManagement() {
                         <h1 className="text-2xl font-bold">Complaints</h1>
                         <p className="text-gray-600">Manage and track all sewage-related complaints</p>
                     </div>
-                    <button className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600">
+                    <button  className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600">
                         + New Complaint
                     </button>
                 </div>

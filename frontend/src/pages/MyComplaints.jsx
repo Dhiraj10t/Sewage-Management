@@ -198,7 +198,7 @@ const MyComplaints = () => {
                       />
                     </div>
 
-                    <div>
+                    {/* <div>
                       <p className="text-xs text-gray-500 mb-1">After</p>
                       {c.status === "solved" && c.photoAfter ? (
                         <img
@@ -211,7 +211,7 @@ const MyComplaints = () => {
                           {c.status === "pending" ? "Pending" : "Working"}
                         </div>
                       )}
-                    </div>
+                    </div> */}
                   </div>
                 </motion.div>
               ))}

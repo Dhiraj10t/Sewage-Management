@@ -4,7 +4,7 @@ import AdminLayout from '../../components/AdminSidebar'
 
 
 const Dashboard = () => {
-
+    const [totalComplaints, setTotalComplaints] = useState([])
     const [complaints, setComplaints] = useState([])
 
     // Fetch and set only the 3 most recent complaints
@@ -12,6 +12,7 @@ const Dashboard = () => {
         const res = await fetch("http://localhost:3000/issue/get");
         const data = await res.json();
         // Sort by createdAt descending, then take first 3
+        setTotalComplaints(data.issues);
         const sorted = data.issues
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
             .slice(0, 3);
@@ -22,10 +23,10 @@ const Dashboard = () => {
         fetchRecentComplaints();
     }, [])
 
-    let total = complaints.length;
-    let pending = complaints.filter(e => e.status == "pending").length;
-    let working = complaints.filter(e => e.status == "working").length;
-    let solved = complaints.filter(e => e.status == "solved").length;
+    let total = totalComplaints.length;
+    let pending = totalComplaints.filter(e => e.status == "pending").length;
+    let working = totalComplaints.filter(e => e.status == "working").length;
+    let solved = totalComplaints.filter(e => e.status == "solved").length;
 
     const recentComplaints = complaints
         .slice() // make a copy

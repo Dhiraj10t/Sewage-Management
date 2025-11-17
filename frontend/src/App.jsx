@@ -10,7 +10,6 @@ import Login from './pages/Login'
 import ProtectedRoute from './components/ProtectedRoute'
 import { useAuth } from './hooks/AuthProvider'
 import AdminDashboard from './pages/Admin'
-import CreateTender from './pages/CreateTender'
 import Dashboard from './pages/Admin/Dashboard'
 import ComplaintsManagement from './pages/Admin/Complaints'
 
