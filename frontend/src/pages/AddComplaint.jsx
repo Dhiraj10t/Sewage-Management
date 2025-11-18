@@ -50,7 +50,8 @@ const AddComplaint = () => {
         lng: position.coords.longitude,
       });
       setLocationError("");
-    }).catch(() => {
+    }).catch((error) => {
+      console.log(error)
       setLocationError("Unable to retrieve your location");
     });
   }

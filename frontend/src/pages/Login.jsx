@@ -27,6 +27,7 @@ const Login = () => {
             body: JSON.stringify(formData)
         })
         const result = await res.json()
+        console.log(result)
         if (result.success) {
             if(formData.phoneNo=="7020346951"&&formData.password=="1234567890"){
                 localStorage.setItem("adminToken","qwertyu4567ertyuisd")

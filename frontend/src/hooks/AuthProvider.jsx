@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
     const login = (e) => {
         localStorage.setItem("token", e)
         getToken()
+        fetchComplaints()
     }
 
     const logout = () => {
@@ -27,20 +28,20 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("adminToken")
         setToken(null)
     }
+    const fetchComplaints = async () => {
+        try {
+            const res = await fetch("http://localhost:3000/issue/getuser", { headers: { "authorization": `Bearer ${localStorage.getItem('token')}` } })
+            const result = await res.json()
+            console.log(result)
+            setUser(result.user[0] || [])
+        } catch (error) {
+            console.error("Error fetching user:", error)
+        }
+    }
 
     useEffect(() => {
-        const fetchComplaints = async () => {
-            try {
-                const res = await fetch("http://localhost:3000/issue/getuser", { headers: { "authorization": `Bearer ${localStorage.getItem('token')}` } })
-                const result = await res.json()
-                console.log(result)
-                setUser(result.user[0] || [])
-            } catch (error) {
-                console.error("Error fetching user:", error)
-            }
-        }
         fetchComplaints()
-    }, [])  
+    }, [])
     return (
         <authcontext.Provider value={{ token, login, logout, user }}>
             {children}

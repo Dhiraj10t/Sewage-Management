@@ -12,7 +12,7 @@ const Dashboard = () => {
         const res = await fetch("http://localhost:3000/issue/get");
         const data = await res.json();
         // Sort by createdAt descending, then take first 3
-        setTotalComplaints(data.issues);
+        setTotalComplaints(data.issues||[]);
         const sorted = data.issues
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
             .slice(0, 3);

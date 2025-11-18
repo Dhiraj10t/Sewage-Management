@@ -17,7 +17,7 @@ export default function ComplaintsManagement() {
         const res = await fetch("http://localhost:3000/issue/get");
         const data = await res.json();
         console.log(data.issues)
-        setComplaints(data.issues);
+        setComplaints(data.issues||[]);
     };
 
     useEffect(() => {
