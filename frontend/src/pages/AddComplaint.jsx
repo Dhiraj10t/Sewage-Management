@@ -3,6 +3,7 @@ import Sidebar from '../components/Sidebar'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useAuth } from '../hooks/AuthProvider'
+import toast from 'react-hot-toast'
 
 const AddComplaint = () => {
   const navigate = useNavigate()
@@ -23,22 +24,37 @@ const AddComplaint = () => {
 
   function getLocation() {
     if (!navigator.geolocation) {
-      setLocationError('Geolocation is not supported by your browser')
-    } else {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          })
-          setLocationError('')
-        },
-        (error) => {
-          setLocationError('Unable to retrieve your location')
-        }
-      )
+      toast.error("Geolocation is not supported by your browser");
+      return;
     }
+
+    const locationPromise = new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => resolve(position),
+        (error) => reject(error)
+      );
+    });
+
+    toast.promise(
+      locationPromise,
+      {
+        loading: "Fetching your location...",
+        success: "Location fetched successfully!",
+        error: "Unable to retrieve location",
+      }
+    );
+
+    locationPromise.then((position) => {
+      setLocation({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+      setLocationError("");
+    }).catch(() => {
+      setLocationError("Unable to retrieve your location");
+    });
   }
+
 
   // const handleSubmit = async () => {
   //   if (!file || !problem || !date) {
@@ -78,50 +94,77 @@ const AddComplaint = () => {
 
   const handleSubmit = async () => {
     if (!file || !problem || !date) {
-      alert('Please fill in all required fields and select a photo.')
-      return
+      toast.error("Please fill all required fields");
+      return;
     }
 
     if (!location.lat || !location.lng) {
-      alert('Please give your location')
-      return // Prevent fetch request if location is not set
+      toast.error("Please fetch your location");
+      return;
     }
 
-    setSubmitting(true)
+    // mark submitting before starting the promise
+    setSubmitting(true);
 
-    try {
-      const formData = new FormData()
-      formData.append("photo", file)
-      formData.append("location", JSON.stringify(location))
-      formData.append("adress", landmark)
-      formData.append("type", problem)
-      formData.append("date", date)
-      formData.append("description", description)
+    // create a promise by using an async IIFE so toast.promise can track it
+    const submitPromise = (async () => {
+      try {
+        const formData = new FormData();
+        formData.append("photo", file);
+        formData.append("location", JSON.stringify(location));
+        formData.append("adress", landmark);
+        formData.append("type", problem);
+        formData.append("date", date);
+        formData.append("description", description);
 
-      const res = await fetch('http://localhost:3000/issue/post', {
-        method: 'POST',
-        headers: {
-          "authorization": `bearer ${token}`
-        },
-        body: formData
-      })
+        const res = await fetch("http://localhost:3000/issue/post", {
+          method: "POST",
+          headers: {
+            authorization: `bearer ${token}`,
+          },
+          body: formData,
+        });
 
-      const result = await res.json()
-      console.log(result)
-      if (result.success) {
-        alert('Complaint submitted successfully!')
-        navigate('/mycomplaint')
-      } else {
-        alert(result.message || 'Failed to submit complaint')
+        // if server returns non-JSON or non-2xx, handle it
+        const result = await res.json().catch(() => {
+          throw new Error("Invalid server response");
+        });
+
+        if (!result.success) {
+          // throw to make toast.promise show the error state
+          throw new Error(result.message || "Submission failed");
+        }
+
+        // success — resolve with result
+        return result;
+      } catch (err) {
+        // rethrow so toast.promise knows it failed
+        throw err;
       }
+    })();
 
-    } catch (err) {
-      console.error(err)
-      alert('Failed to submit complaint')
-    } finally {
-      setSubmitting(false)
-    }
-  }
+    // show promise toast
+    toast.promise(submitPromise, {
+      loading: "Submitting your complaint...",
+      success: "Complaint submitted successfully!",
+      error: (err) => err?.message ?? "Failed to submit complaint",
+    });
+
+    // navigate on success, ensure submitting flag is cleared in finally
+    submitPromise
+      .then(() => {
+        navigate("/mycomplaint");
+      })
+      .catch((err) => {
+        // optional: you can log or take other actions here
+        console.error("Submit error:", err);
+      })
+      .finally(() => {
+        setSubmitting(false);
+      });
+  };
+
+
 
 
 
@@ -217,7 +260,7 @@ const AddComplaint = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
             <label className='block text-blue-900 font-medium mb-1'>Landmark (Optional)</label>
             <input
-              
+
               onChange={(e) => setLandmark(e.target.value)}
               value={landmark}
               type='text'

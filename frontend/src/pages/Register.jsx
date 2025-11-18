@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import toast from 'react-hot-toast';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -28,8 +29,9 @@ const Register = () => {
         });
         const result = await res.json();
         if (result.success) {
-            alert("Registered Successfully");
             navigate("/login");
+            console.log("result")
+            toast.success("Registered Successfully")
         }
     };
 

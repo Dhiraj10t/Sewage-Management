@@ -12,12 +12,14 @@ import { useAuth } from './hooks/AuthProvider'
 import AdminDashboard from './pages/Admin'
 import Dashboard from './pages/Admin/Dashboard'
 import ComplaintsManagement from './pages/Admin/Complaints'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
   const { token } = useAuth()
   const admin=localStorage.getItem("adminToken")
   return (
     <>
+      <Toaster position='top-center'/>
       <Navbar />
       <Routes>
         {!token && (<>

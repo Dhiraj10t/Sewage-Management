@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/AuthProvider'
 import { easeInOut, motion } from 'framer-motion'
+import toast, {Toaster} from "react-hot-toast"
 
 const Login = () => {
     const { login } = useAuth()
@@ -30,9 +31,10 @@ const Login = () => {
             if(formData.phoneNo=="7020346951"&&formData.password=="1234567890"){
                 localStorage.setItem("adminToken","qwertyu4567ertyuisd")
             }
-            alert(result.message)
+            
             login(result.token)
             navigate("/user")
+            toast.success(result.message)
         } else {
             alert(result.message)
         }
@@ -44,7 +46,7 @@ const Login = () => {
             style={{
                 backgroundImage: "url('images/login-bg.jpg')",
             }}
-        >
+            >
             {/* Dark overlay */}
             <div className="absolute inset-0 bg-black/50"></div>
 

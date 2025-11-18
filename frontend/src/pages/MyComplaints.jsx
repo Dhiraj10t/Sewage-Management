@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Sidebar from '../components/Sidebar'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 const MyComplaints = () => {
   const navigate = useNavigate()
@@ -49,7 +50,8 @@ const MyComplaints = () => {
       if (data.message === "Rating added successfully") {
         alert("Thank you for your rating!")
       } else {
-        alert(data.message)
+        console.log(data)
+        toast.success(data.message)
       }
     })
     .catch(err => {
